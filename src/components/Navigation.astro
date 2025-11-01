@@ -1,0 +1,77 @@
+---
+const navLinks = [
+  { name: 'Home', href: '/' },
+  { name: 'Stars', href: '/stars' },
+  { name: 'Trending-Gossip', href: '/trending-gossip' },
+  { name: 'Breaking-News', href: '/breaking-news' },
+  { name: 'Photo-Features', href: '/photo-features' },
+  { name: 'Weekly-Favorites', href: '/weekly-favorites' }
+];
+---
+
+<script>
+  let isMenuOpen = false;
+  
+  function toggleMenu() {
+    isMenuOpen = !isMenuOpen;
+  }
+</script>
+
+<nav class="bg-[#0c1445] text-white shadow-lg">
+  <div class="container mx-auto px-4 py-3">
+    <div class="flex justify-between items-center">
+      <a href="/" class="text-2xl font-bold tracking-wider text-[#d90074] hover:text-[#ff69b4] transition-colors duration-300">
+        Star Gossip Central
+      </a>
+      
+      <!-- Desktop Navigation -->
+      <div class="hidden md:flex gap-1">
+        {navLinks.map((link) => (
+          <a 
+            href={link.href} 
+            class="px-4 py-2 font-medium hover:text-[#d90074] transition-colors duration-300 border-b-2 border-transparent hover:border-[#d90074]"
+          >
+            {link.name}
+          </a>
+        ))}
+      </div>
+      
+      <!-- Mobile Menu Button -->
+      <button 
+        class="md:hidden text-white focus:outline-none"
+        onClick={toggleMenu}
+      >
+        <i class="fas fa-bars text-2xl"></i>
+      </button>
+    </div>
+    
+    <!-- Mobile Navigation -->
+    {isMenuOpen && (
+      <div class="md:hidden mt-4 pb-4">
+        <div class="flex flex-col gap-2">
+          {navLinks.map((link) => (
+            <a 
+              href={link.href} 
+              class="px-4 py-3 font-medium hover:bg-[#d90074] hover:text-white transition-colors duration-300 rounded"
+              onClick={toggleMenu}
+            >
+              {link.name}
+            </a>
+          ))}
+        </div>
+      </div>
+    )}
+  </div>
+</nav>
+
+<style>
+  @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css');
+  
+  nav {
+    background: linear-gradient(135deg, #0c1445 0%, #1a235a 100%);
+  }
+  
+  a:hover {
+    text-shadow: 0 0 8px rgba(217, 0, 116, 0.7);
+  }
+</style>
